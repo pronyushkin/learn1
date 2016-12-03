@@ -5,6 +5,8 @@ def greet_user(bot, update):
     print('Вызван /start')
     print(type(bot))
     print(type(update))
+    print(update.message)
+    bot.sendMessage(update.message.chat_id, text='Скажи что нибудь')
 
 def main():
 	updater = Updater('312255597:AAHeQ-xtkTqSUMpNW08TXhFPLeaQtQGE5D4')
