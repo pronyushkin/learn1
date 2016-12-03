@@ -1,6 +1,9 @@
 #import python_telegram_bot
 from telegram.ext import Updater, CommandHandler
 
+def show_error(bot, update, error):
+	print('update "{}" error "{}"'.format(update,error))
+
 def greet_user(bot, update):
     print('Вызван /start')
     print(type(bot))
@@ -12,6 +15,7 @@ def main():
 	updater = Updater('312255597:AAHeQ-xtkTqSUMpNW08TXhFPLeaQtQGE5D4')
 	dp = updater.dispatcher
 	dp.add_handler(CommandHandler("start", greet_user))
+	dp.add_error_handler(show_error)
 	updater.start_polling()
 	updater.idle()
 
