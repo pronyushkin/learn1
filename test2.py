@@ -50,5 +50,5 @@ def interact_ans() :
 
            
 if __name__ == '__main__':
-    interact_sqrt() 
+    interact_ans() 
 
