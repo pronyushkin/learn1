@@ -3,6 +3,8 @@ from telegram.ext import Updater, CommandHandler
 
 def greet_user(bot, update):
     print('Вызван /start')
+    print(type(bot))
+    print(type(update))
 
 def main():
 	updater = Updater('312255597:AAHeQ-xtkTqSUMpNW08TXhFPLeaQtQGE5D4')
