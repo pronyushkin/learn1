@@ -1,5 +1,7 @@
 #import python_telegram_bot
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
+from getans import get_ans
+
 
 def talk_to_me( bot, update ):
 	print('Пришло сообщение:{}'.format(update.message.text))
