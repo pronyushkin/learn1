@@ -26,9 +26,12 @@ def cmd_findname():
 
 def ask_user():
 	ans = ''
-	while not ans == 'Хорошо':
-		ans = input('Как дела? ')
-	print('так держать')
+	try:
+		while not ans == 'Хорошо':
+			ans = input('Как дела? ')
+		print('так держать')
+	except KeyboardInterrupt:
+		print('ну и ладно')
 
 def cmd_bot():
 	ans = ''
