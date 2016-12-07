@@ -29,9 +29,9 @@ def rand_positive( deftext = 'даже не знаю' ) :
     'Скушай тортик :)'
     ]
 
-    id = random.randrange(0,len(l) + 1 )
-    if id < len(l) :
-        return l[id]
+    i = random.randrange(0,len(l) + 1 )
+    if i < len(l) :
+        return l[i]
     return deftext
 
 

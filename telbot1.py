@@ -5,8 +5,9 @@ from getans import get_ans,rand_positive
 
 def talk_to_me( bot, update ):
 	print('Пришло сообщение:{}'.format(update.message.text))
-	ans = get_ans( update.message.text, rand_positive )
-	bot.sendMessage(update.message.chat_id, ans)
+	ans = get_ans( update.message.text, rand_positive() )
+	print(ans)
+	bot.sendMessage(update.message.chat_id, ans )
 
 def show_error(bot, update, error):
 	print('update "{}" error "{}"'.format(update,error))
