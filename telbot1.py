@@ -24,7 +24,7 @@ def calc_from_message(msg_text):
     if end_index == -1:
         return 'Введите выражение вида 1+2='
 
-    match_result = re.match('(\D*)(\d*)([+,*])(\d*)=', msg_text)
+    match_result = re.match('(\D*)(\d*)([+,*,/,-])(\d*)=', msg_text)
     if not match_result:
         return 'Введите выражение вида 1+2='
 
