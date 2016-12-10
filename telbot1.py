@@ -35,6 +35,8 @@ def calc_from_message(msg_text):
         elif match_result.group(3) == '*':
             exp_result = int(match_result.group(2)) * int(match_result.group(4))
         elif match_result.group(3) == '/':
+            if not int(match_result.group(4)):
+                return 'деление на ноль не поддерживается'
             exp_result = int(match_result.group(2)) / int(match_result.group(4))
         elif match_result.group(3) == '-':
             exp_result = int(match_result.group(2)) - int(match_result.group(4))
