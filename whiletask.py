@@ -13,12 +13,10 @@ def cmd_help():
 
 def find_person( l, name ):
     '''Поиск в списке с удалением'''
-    while len(l):
-        print('проверяем ', l[-1] )
-        if l[-1] == name:
-            print(name,' нашелся')
-            return
-        l.pop()
+    while l:
+        if l.pop() == name:
+            print(name,'найден')
+            return 
     print(name,' не найден')
 
 def cmd_findname():
