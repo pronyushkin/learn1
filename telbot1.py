@@ -19,21 +19,25 @@ def calc_from_message(msg_text):
     '''Пытаемся обработать строку как калькулятор.
     [1+2=]
     '''
-    msg_text = msg_text.strip()
+    msg_text = ' ' + msg_text.strip()
     end_index = msg_text.rfind('=')
     if end_index == -1:
         return 'Введите выражение вида 1+2='
 
-    match_result = re.match('(\d*)([+,*])(\d*)=', msg_text)
+    match_result = re.match('(\D*)(\d*)([+,*])(\d*)=', msg_text)
     if not match_result:
         return 'Введите выражение вида 1+2='
 
     exp_result = None
     try:
-        if match_result.group(2) == '+':
-            exp_result = int(match_result.group(1)) + int(match_result.group(3))
-        elif match_result.group(2) == '*':
-            exp_result = int(match_result.group(1)) * int(match_result.group(3))
+        if match_result.group(3) == '+':
+            exp_result = int(match_result.group(2)) + int(match_result.group(4))
+        elif match_result.group(3) == '*':
+            exp_result = int(match_result.group(2)) * int(match_result.group(4))
+        elif match_result.group(3) == '/':
+            exp_result = int(match_result.group(2)) / int(match_result.group(4))
+        elif match_result.group(3) == '-':
+            exp_result = int(match_result.group(2)) - int(match_result.group(4))
         else:
             return 'Ошибка программиста сюда попасть не должны'
     except TypeError:
