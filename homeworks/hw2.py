@@ -33,6 +33,7 @@ def exercise_csv():
     Возьмите словарь с ответами
     Запишите его содержимое в формате csv в формате: "ключ"; "значение". 
     Каждая пара ключ-значение должна располагаться на отдельной строке
+    TODO выходной файл содержит дополнительные переводы строки
     '''
     data = {
         'привет':'И тебе привет!',
@@ -46,7 +47,7 @@ def exercise_csv():
         rec = data.popitem()
         row = { fields[0]:rec[0],fields[1]:rec[1]}
         csv_data.append(row)
-        
+
     print(csv_data)
     with open('export.csv', 'w', encoding='utf-8') as f:
         writer = csv.DictWriter(f, fields, delimiter=';')
