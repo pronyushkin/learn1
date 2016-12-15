@@ -1,4 +1,4 @@
-'''Домашняя работа после второго занятия'''
+﻿'''Домашняя работа после второго занятия'''
 from datetime import datetime, date, timedelta
 #pip install python-dateutil
 from dateutil.relativedelta import relativedelta
