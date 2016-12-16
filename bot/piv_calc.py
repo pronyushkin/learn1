@@ -38,6 +38,16 @@ def calc_from_message(msg_text):
 
     return 'Не удалось вычислить результат выражения [{}]'.format(msg_text)
 
+
+def replace_eq(msg_text):
+    '''
+    Заменяет в строке некоторые паттерны на '='
+    '''
+    msg_text = msg_text.replace('равно','=')
+    msg_text = msg_text.replace('равняется','=')
+    return msg_text
+
+
 def calc_from_words_message(msg_text):
     '''Пытаемся обработать строку которая может содержать слова вместо цифр.
     [один плюс два]
@@ -66,8 +76,7 @@ def calc_from_words_message(msg_text):
     msg_text = msg_text.replace(':','/')
     msg_text = msg_text.replace('разделить','/')
     msg_text = msg_text.replace('разделить на','/')
-    msg_text = msg_text.replace('равно','=')
-    msg_text = msg_text.replace('равняется','=')
+    msg_text = replace_eq(msg_text)
     msg_text = msg_text.replace(',','.')
     msg_text = msg_text.replace(' и ','.')
     msg_text = msg_text.replace(' ','')
