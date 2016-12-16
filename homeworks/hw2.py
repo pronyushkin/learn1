@@ -45,17 +45,17 @@ def exercise_csv():
     csv_data = []
     while data:
         rec = data.popitem()
-        row = { fields[0]:rec[0],fields[1]:rec[1]}
+        row = {fields[0]:rec[0], fields[1]:rec[1]}
         csv_data.append(row)
 
     print(csv_data)
-    with open('export.csv', 'w', encoding='utf-8') as f:
+    with open('export.csv', 'w', encoding='utf-8', newline='') as f:
         writer = csv.DictWriter(f, fields, delimiter=';')
         writer.writeheader()
         for row in csv_data:
             writer.writerow(row)
 
 if __name__ == '__main__':
-    #exercise_datatime()
-    #exercise_filework()
+    exercise_datatime()
+    exercise_filework()
     exercise_csv()
