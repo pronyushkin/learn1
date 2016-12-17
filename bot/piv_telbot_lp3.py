@@ -26,10 +26,11 @@ def text_calc(args_as_str, bot, chat_data, chat_id):
     args_as_str = args_as_str.lower()
     args_as_str = replace_eq(args_as_str)
     print('text_calc', args_as_str)
-    if '=' in args_as_str:
-        bot.sendMessage(chat_id, text=calc_from_words_message(args_as_str))
-    else:
-        chat_data['expression'] = chat_data.get('expression', '') + args_as_str
+    chat_data['expression'] = chat_data.get('expression', '') + args_as_str
+    expresion = chat_data['expression']
+    if '=' in expresion:
+        bot.sendMessage(chat_id, text=calc_from_words_message(expresion))
+        chat_data['expression'] = ''
 
 
 def text_cities(args_as_str, bot, chat_data, chat_id):
@@ -77,7 +78,7 @@ def cmd_calc(bot, update, args, chat_data):
     Обработка команды /calc
     Переход в режим калькулятора и вычисление выражения если оно есть
     '''
-    print('Вызван /calc args', args)
+    print('Вызван /calc args', args,'messagetext',update.message.text)
     #print(type(bot))
     #print(type(update))
     #print(update.message)
@@ -93,15 +94,14 @@ def cmd_calc(bot, update, args, chat_data):
         bot.sendMessage(update.message.chat_id, text='режим Калькулятор', reply_markup=reply_markup) 
     args_as_str = ' '.join(args)
     args_as_str = replace_eq(args_as_str)
-    print('args_as_str:',args_as_str)
     text_calc(args_as_str, bot, chat_data, update.message.chat_id)
 
 
 def cmd_word_count(bot, update, args, chat_data):
     '''Обработка команды на подсчет слов.'''
     print('Вызван /wordcount')
-    print(type(bot))
-    print(type(update))
+    #print(type(bot))
+    #print(type(update))
     args_as_str = ' '.join(args)
     reset_chat(bot, update, chat_data,word_counter(args_as_str))
 
@@ -109,18 +109,18 @@ def cmd_word_count(bot, update, args, chat_data):
 def cmd_start(bot, update, chat_data):
     '''Приветствие пользователя по команде /start.'''
     print('Вызван /start')
-    print(type(bot))
-    print(type(update))
-    print(update.message)
+    #print(type(bot))
+    #print(type(update))
+    #print(update.message)
     command_info = '''
     Доступны следующие команды:
     /start - эта информация
     /wordcount [слова в кавычках разделенные пробелом] - подсчитает количество введенных слов
     /calc - начать вычисление простых примеров вида 1+2=  
             т.е. два числа операция и равно в конце, пробелы не допустимы            
-    /cities - начать игру в города 
     также можно просто что нибудь написать и тогда я что то отвечу
     '''
+    #TODO добавить описание команды если реализую /cities - начать игру в города 
     reset_chat(bot, update, chat_data,command_info)
 
 
