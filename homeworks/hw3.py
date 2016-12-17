@@ -1,5 +1,7 @@
 ﻿'''Домашняя работа после третьего занятия'''
 import csv
+import json
+
 
 def exercise_csv_bus_station():
     '''
@@ -39,5 +41,25 @@ def exercise_csv_bus_station():
         print(max)
 
 
+def exercise_json_metro_station():
+    '''
+    В этом задании требуется определить, на каких станциях московского метро сейчас идёт ремонт эскалаторов и вывести на экран их названия.
+    '''
+    with open('data-397-2016-11-24.json', 'r', encoding='utf-8') as f:
+        js_content = json.load(f, encoding='utf-8')
+        print(type(js_content))
+        repair_station = []
+        for row in js_content:
+            repair = row.get('RepairOfEscalators',False)
+            if repair:
+                if len(repair):
+                    station_name = row.get('Name','имя не определено, ')
+                    station_name = station_name.split(',')[0]
+                    repair_station.append(station_name)
+    repair_station_set = set(repair_station)
+    print(repair_station_set)
+
+
 if __name__ == '__main__':
-    exercise_csv_bus_station()
+    #exercise_csv_bus_station()
+    exercise_json_metro_station()
