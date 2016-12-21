@@ -1,5 +1,5 @@
 ﻿'''Домашняя работа после третьего занятия, лекции'''
-from flask import Flask, request
+from flask import Flask, abort, request
 import requests
 
 city_id = 524901
@@ -36,6 +36,31 @@ def show_temp():
     return str(res_json.get('main',{}).get('temp','недоступно'))
 
 
+@app.route('/newsid/<int:news_id>')
+def news_by_id(news_id):
+    all_news = [{'id': 1, 'title': 'n 1','text': 'text1','date': '2016-12-01'},
+                {'id': 2, 'title': 'n 2','text': 'text2','date': '2016-12-02'},
+                {'id': 3, 'title': 'n 3','text': 'text3','date': '2016-12-03'}]
+    news_to_show = [news for news in all_news if news['id'] == news_id]
+    if len(news_to_show) == 1:
+        result = '<h1>%(title)s</h1><p><i>%(date)s</i></p><p>%(text)s</p>'
+        result = result % news_to_show[0]
+        return result
+    else:
+        abort(404)
+
+
+@app.route('/news')
+def all_the_news():
+    colors = ['red', 'green', 'black']
+    try:
+        limit = int(request.args.get('limit'))
+    except:
+        limit = 10
+    color = request.args.get('color') if request.args.get('color') in colors else 'black'
+    return '<h1 style="color: %s">News: <small>%s</small></h1>' % (color, limit)
+
+
 @app.route('/names')
 def show_names():
     '''Скачивание и вывод информации об именах'''
@@ -64,4 +89,4 @@ def show_names():
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host='localhost', port=5000, debug=True)
