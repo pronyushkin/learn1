@@ -114,8 +114,6 @@ def exercise_bus_near_metro(bus_file,metro_file):
                 print('c1',coord)
         break
 
-        
-
 
 if __name__ == '__main__':
     #exercise_csv_bus_station('data-398-2016-11-07.csv')
